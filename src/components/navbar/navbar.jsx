@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -7,23 +8,22 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Logo from './logo.png';
 import SettingsIcon from '@mui/icons-material/Settings';
-import { blue } from '@mui/material/colors';
-import { colors } from '@mui/material';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
 
 const pages = ['Weather', 'Trip', 'Map'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+    const [unit, setUnit] = useState("Celsius");
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -38,12 +38,25 @@ function ResponsiveAppBar() {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+    useEffect(() => {
+        const storedUnit = localStorage.getItem("unit");
+        if (storedUnit) {
+            setUnit(storedUnit);
+        }
+        console.log("unit", unit);
+    }, [unit]);
+
+    const handleUnitChange = (event) => {
+        const newUnit = event.target.value;
+        setUnit(newUnit);
+        localStorage.setItem("unit", newUnit);
+    };
 
     return (
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <img src={Logo} width={30} height={30} />
+                    <img src={Logo} alt="altimg"width={30} height={30} />
                     <Typography
                         variant="h6"
                         noWrap
@@ -133,7 +146,7 @@ function ResponsiveAppBar() {
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Button variant='contained' style={{backgroundColor:'white'}}><SettingsIcon color="primary"/></Button>
+                                <Button variant='contained' style={{ backgroundColor: 'white' }}><SettingsIcon color="primary" /></Button>
                             </IconButton>
                         </Tooltip>
                         <Menu
@@ -152,11 +165,20 @@ function ResponsiveAppBar() {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                </MenuItem>
-                            ))}
+                            <FormControl sx={{ m: 1, minWidth: 120 }} style={{ backgroundColor: "white" }}>
+                                <InputLabel id="demo-simple-select-helper-label" style={{ backgroundColor: "white" }}>Unit</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-helper-label"
+                                    id="demo-simple-select-helper"
+                                    value={unit}
+                                    label="Age"
+                                    onChange={handleUnitChange}
+                                >
+                                    <MenuItem value={"Celcius"}>Celcius</MenuItem>
+                                    <MenuItem value={"Fahrenheit"}>Fahrenheit</MenuItem>
+
+                                </Select>
+                            </FormControl>
                         </Menu>
                     </Box>
                 </Toolbar>
