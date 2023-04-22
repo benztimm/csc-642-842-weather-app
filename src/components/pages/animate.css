@@ -1,0 +1,12 @@
+.element-to-animate {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  
+  .element-to-animate.visible {
+    opacity: 1;
+  }
+  
+  .element-to-animate.hidden {
+    opacity: 0;
+  }

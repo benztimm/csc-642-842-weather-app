@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import Logo from './logo.png';
+import Logo from './static/logo.png';
 import SettingsIcon from '@mui/icons-material/Settings';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
@@ -145,9 +145,18 @@ function ResponsiveAppBar() {
 
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Button variant='contained' style={{ backgroundColor: 'white' }}><SettingsIcon color="primary" /></Button>
-                            </IconButton>
+                                <Button 
+                                variant='contained' 
+                                onClick={handleOpenUserMenu}
+                                style={{backgroundColor:"white",color:"#1976d2",fontWeight: 'bold'}}
+                                startIcon={
+                                <SettingsIcon 
+                                    fontSize='inherit'
+                                    color='primary'
+                                    style={{fontSize:"30px",paddingLeft:"10px"}}/>
+                                }>
+                                    
+                                </Button>
                         </Tooltip>
                         <Menu
                             sx={{ mt: '45px' }}
@@ -171,7 +180,7 @@ function ResponsiveAppBar() {
                                     labelId="demo-simple-select-helper-label"
                                     id="demo-simple-select-helper"
                                     value={unit}
-                                    label="Age"
+                                    label="Unit"
                                     onChange={handleUnitChange}
                                 >
                                     <MenuItem value={"Celcius"}>Celcius</MenuItem>
