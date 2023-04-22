@@ -16,21 +16,22 @@ function Weather() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        /*
+
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`)
             .then(response => response.json())
             .then(data => console.log(data))
             .catch(err => console.log(err));
 
-        const newsResponse = await fetch(`https://newsapi.org/v2/everything?q=${city}&pageSize=3&apiKey=${NEWS_API_KEY}`)
+        const newsResponse = await fetch(`https://newsapi.org/v2/everything?q=${city}&pageSize=3&apiKey=${NEWS_API_KEY}&sources=bbc-news,cnn`)
             .then(response => response.json())
             .then(data => console.log(data))
             .catch(err => console.log(err));
-        */
+
         const foodResponse = fetch(`http://localhost:3001/api/yelp?location=${city}&sort_by=best_match&limit=3`)
             .then((response) => response.json())
             .then((data) => console.log(data))
             .catch((error) => console.error("Error fetching data from Yelp API:", error));
+
     };
     useEffect(() => {
         const interval = setInterval(() => {
