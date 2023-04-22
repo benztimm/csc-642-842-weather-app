@@ -1,0 +1,89 @@
+{
+    "San Francisco": {
+        "coord": {
+            "lon": -122.4199,
+            "lat": 37.779
+        },
+        "weather": [
+            {
+                "id": 803,
+                "main": "Clouds",
+                "description": "broken clouds",
+                "icon": "04d"
+            }
+        ],
+        "base": "stations",
+        "main": {
+            "temp": 290.4,
+            "feels_like": 289.98,
+            "temp_min": 286.34,
+            "temp_max": 299.51,
+            "pressure": 1021,
+            "humidity": 69
+        },
+        "visibility": 10000,
+        "wind": {
+            "speed": 8.75,
+            "deg": 290,
+            "gust": 12.35
+        },
+        "clouds": {
+            "all": 75
+        },
+        "dt": 1682127046,
+        "sys": {
+            "type": 2,
+            "id": 2017837,
+            "country": "US",
+            "sunrise": 1682083580,
+            "sunset": 1682131804
+        },
+        "timezone": -25200,
+        "id": 5391959,
+        "name": "San Francisco",
+        "cod": 200
+    },
+    "San Jose":{
+        "coord": {
+            "lon": -121.8906,
+            "lat": 37.3362
+        },
+        "weather": [
+            {
+                "id": 801,
+                "main": "Clouds",
+                "description": "few clouds",
+                "icon": "02n"
+            }
+        ],
+        "base": "stations",
+        "main": {
+            "temp": 289.44,
+            "feels_like": 288.95,
+            "temp_min": 284.92,
+            "temp_max": 291.53,
+            "pressure": 1021,
+            "humidity": 70
+        },
+        "visibility": 10000,
+        "wind": {
+            "speed": 3.09,
+            "deg": 310
+        },
+        "clouds": {
+            "all": 20
+        },
+        "dt": 1682138733,
+        "sys": {
+            "type": 2,
+            "id": 2004102,
+            "country": "US",
+            "sunrise": 1682083491,
+            "sunset": 1682131639
+        },
+        "timezone": -25200,
+        "id": 5392171,
+        "name": "San Jose",
+        "cod": 200
+    }
+}

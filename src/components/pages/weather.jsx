@@ -1,24 +1,38 @@
 import { useState, useEffect } from 'react';
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Input from '@mui/material/Input';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import SearchIcon from '@mui/icons-material/Search';
+
 import { Button } from '@mui/material';
+import Autocomplete from '@mui/material/Autocomplete';
+import { uniqueCitylist, API_KEY, NEWS_API_KEY, options } from '../statics/data.js';
+
+
 function Weather() {
     const [unit, setUnit] = useState(localStorage.getItem("unit"));
     const [city, setCity] = useState("");
-    const [weather, setWeather] = useState(null);
-    
+    const [data, setData] = useState(null);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`)
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(err => console.log(err));
+            
+        const newsResponse = await fetch(`https://newsapi.org/v2/everything?q=${city}&pageSize=3&apiKey=${NEWS_API_KEY}`)
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(err => console.log(err));
+
+        const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+        const yelpUrl = `https://api.yelp.com/v3/businesses/search?location=${city}&sort_by=best_match&limit=3`;
+        const url = proxyUrl + yelpUrl;
+        const foodResponse = fetch(url, options)
+            .then(response => response.json())
+            .then(response => console.log(response))
+            .catch(err => console.error(err));
         // Add your form submission logic here
-        console.log("city", city);
     };
     useEffect(() => {
         const interval = setInterval(() => {
@@ -32,11 +46,28 @@ function Weather() {
         return () => clearInterval(interval);
     }, [unit]);
     return (
-        <div style={{ paddingTop: '50px' }}>
-            <form onSubmit={handleSubmit}>
-                <InputLabel htmlFor="input-with-icon-adornment" position="start">
-                    City
-                </InputLabel>
+        <div style={{ display: 'flex', flexDirection: "column", justifyContent: 'center', marginTop: '50px' }}>
+            <div>
+                <form onSubmit={handleSubmit}>
+                    <Autocomplete
+                        disablePortal
+                        id="combo-box-demo"
+                        value={city}
+                        onChange={(e, v) => setCity(v)}
+                        options={uniqueCitylist}
+                        sx={{ width: 300, marginLeft: 'auto', marginRight: 'auto', paddingBottom: '10px' }}
+                        renderInput={(params) => <TextField {...params} label="City" />}
+                    />
+                    <Button variant="contained" type='submit' style={{ marginLeft: '10px' }}>Search</Button>
+                </form>
+            </div>
+        </div>
+
+
+
+    );
+}
+/*
                 <Input
                     id="input-with-icon-adornment"
                     value={city}
@@ -47,15 +78,5 @@ function Weather() {
                         </InputAdornment>
                     }
                 />
-                <div style={{ paddingTop: '15px', marginLeft: '10px' }}></div>
-                <Button variant="contained" type='submit'>Search</Button>
-            </form>
-            {city}
-            {unit}
-        </div>
-
-
-
-    );
-}
+                */
 export default Weather;
