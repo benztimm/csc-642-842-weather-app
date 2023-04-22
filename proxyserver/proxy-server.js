@@ -18,7 +18,7 @@ app.get("/api/yelp", async (req, res) => {
     res.json(data);
   } catch (error) {
     
-    res.status(500).json({ error: error.message,error2: error,params: req.query});
+    res.status(500).json({ error: error.message});
   }
 });
 
