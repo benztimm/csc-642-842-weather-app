@@ -4,8 +4,7 @@ import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
 import Typography from '@mui/material/Typography';
-import { uniqueCitylist, API_KEY, NEWS_API_KEY, options, PEXEL_API_KEY } from '../statics/data.js';
-import ConvertTemperature from '../Temperature/ConvertTemperature.jsx';
+import { uniqueCitylist, API_KEY, NEWS_API_KEY, PEXEL_API_KEY } from '../statics/data.js';
 import ScrollAnimation from "./scrollanimation";
 
 import WeatherCard from '../Cards/weathercard.jsx';
@@ -67,16 +66,6 @@ function Weather() {
         // Clean up the interval when the component unmounts
         return () => clearInterval(interval);
     }, [unit]);
-    function getConvertedTemperature(temp, targetUnit) {
-        switch (targetUnit) {
-            case "Celcius":
-                return temp - 273.15;
-            case "Fahrenheit":
-                return ((temp - 273.15) * 9) / 5 + 32;
-            default:
-                return temp;
-        }
-    }
     return (
         <div
             style={{
@@ -88,7 +77,7 @@ function Weather() {
             }}>
 
             <div>
-                <form onSubmit={handleSubmit} style={{ marginBottom: '30px' }}>
+                <form onSubmit={handleSubmit} style={{ marginBottom: '30px', marginTop:"50px" }}>
                     <Autocomplete
                         disablePortal
                         id="combo-box-demo"
