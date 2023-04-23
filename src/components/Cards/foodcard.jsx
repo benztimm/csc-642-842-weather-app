@@ -9,7 +9,7 @@ import CardActions from '@mui/material/CardActions';
 import Chip from '@mui/material/Chip';
 function foodCard(props) {
     const { food } = props;
-    function card(food) {
+    function FoodCard(food) {
         
         return (
             <Card sx={{ width: "33%" ,maxHeight :"600px"}}>
@@ -24,7 +24,7 @@ function foodCard(props) {
                     alt={food.name}
                 />
                 <CardContent sx={{ height: '180px', overflow: 'auto' }}>
-                    Category: {food.categories.map((category) => <Chip label={category.title} variant="outlined" />)}
+                    Category: {food.categories.map((category,index) => <Chip key={index} label={category.title} variant="outlined" />)}
                     <Typography variant="body1" color="text.secondary"fontWeight="bold" style={{fontSize:"20px"}}>
                         Price: {food.price}
                     </Typography>
@@ -41,7 +41,7 @@ function foodCard(props) {
 
     return (
         <Card style={{ display: "flex", width: '80%', gap: "16px" }} sx={{ maxWidth: '80%' }}>
-            {food && food.businesses.map((food) => (card(food)))}
+            {food && food.businesses.map((food,index) => <FoodCard key={index} {...food} />)}
         </Card>
 
     );

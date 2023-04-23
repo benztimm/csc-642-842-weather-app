@@ -16,6 +16,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
+import { Link } from 'react-router-dom';
 
 const pages = ['Weather', 'Trip', 'Map'];
 
@@ -104,7 +105,11 @@ function ResponsiveAppBar() {
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
+                                    <Typography 
+                                    component={Link}
+                                    style={{ textDecoration: 'none', color: 'inherit' }}
+                                    to={`/${page.toLowerCase()}`}
+                                    textAlign="center">{page}</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>

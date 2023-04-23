@@ -9,7 +9,7 @@ import CardActions from '@mui/material/CardActions';
 
 function newsCard(props) {
     const { news } = props;
-    function card(news) {
+    function NewsCard(news) {
         return (
             <Card sx={{ width: "33%" ,maxHeight :"650px"}}>
                 <CardHeader
@@ -43,7 +43,7 @@ function newsCard(props) {
     return (
 
         <Card style={{ display: "flex", width: '80%', gap: "16px" }} sx={{ maxWidth: '80%' }}>
-            {news && news.articles.map((news) => (card(news)))}
+            {news && news.articles.map((news,index) => <NewsCard key={index} {...news} />)}
         </Card>
 
     );

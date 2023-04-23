@@ -28,7 +28,7 @@ function Weather() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            
+
             const weatherResponse = fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`);
             const newsResponse = fetch(`https://newsapi.org/v2/everything?q=${city}&pageSize=3&apiKey=${NEWS_API_KEY}&sources=bbc-news,cnn`)
             const foodResponse = fetch(`http://localhost:3001/api/yelp?location=${city}&sort_by=best_match&limit=3`)
@@ -44,12 +44,12 @@ function Weather() {
                 foodResponse.then((res) => res.json()),
                 pictureResponse.then((res) => res.json()),
             ]);
-            
+
             setWeather(weatherData);
             setCityPicture(pictureData);
             setNews(newsData);
             setFood(foodData);
-            
+
         } catch (err) {
             console.log(err);
         }
@@ -76,20 +76,20 @@ function Weather() {
                 marginTop: '50px'
             }}>
 
-            <div>
-                <form onSubmit={handleSubmit} style={{ marginBottom: '30px', marginTop:"50px" }}>
-                    <Autocomplete
-                        disablePortal
-                        id="combo-box-demo"
-                        value={city}
-                        onChange={(e, v) => setCity(v)}
-                        options={uniqueCitylist}
-                        sx={{ width: 300, marginLeft: 'auto', marginRight: 'auto', paddingBottom: '10px' }}
-                        renderInput={(params) => <TextField {...params} label="City" />}
-                    />
-                    <Button variant="contained" type='submit' style={{ marginLeft: '10px' }}>Search</Button>
-                </form>
-            </div>
+
+            <form onSubmit={handleSubmit} style={{ marginBottom: '30px', marginTop: "50px" }}>
+                <Autocomplete
+                    disablePortal
+                    id="combo-box-demo"
+                    value={city}
+                    onChange={(e, v) => setCity(v)}
+                    options={uniqueCitylist}
+                    sx={{ width: 300, marginLeft: 'auto', marginRight: 'auto', paddingBottom: '10px' }}
+                    renderInput={(params) => <TextField {...params} label="City" />}
+                />
+                <Button variant="contained" type='submit' style={{ marginLeft: '10px' }}>Search</Button>
+            </form>
+
             <ScrollAnimation>
                 {weather &&
                     < WeatherCard
@@ -107,7 +107,7 @@ function Weather() {
             </ScrollAnimation>
 
             <ScrollAnimation>
-            {food && <Typography variant="body1" color="text.secondary" fontWeight="bold" style={{ fontSize: "50px", marginTop: "20px" }}>
+                {food && <Typography variant="body1" color="text.secondary" fontWeight="bold" style={{ fontSize: "50px", marginTop: "20px" }}>
                     FOOD
                 </Typography>}
                 {food && <FoodCard food={food} />}

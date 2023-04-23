@@ -23,14 +23,17 @@ function weatherCard(props) {
                   }}
                 component="img"
                 height="194"
-                image={picture.photos[0].src.original}
+                image={picture.photos[0].src.landscape}
                 alt="image of city"
             />
             <CardContent >
-                <Typography variant="body1" color="text.secondary" fontWeight="bold" style={{fontSize:"20px"}}>
-                    Weather: {weather.weather[0].description}
+            <Typography variant="body1" color="text.secondary" fontWeight="bold" style={{fontSize:"20px"}}>
+                <img src={"http://openweathermap.org/img/wn/"+weather.weather[0].icon+".png"} alt="weather icon"/>
                 </Typography>
-                <ConvertTemperature unit={unit} temp = {weather.main.temp}/>
+                <Typography variant="body1" color="text.secondary" fontWeight="bold" style={{fontSize:"20px"}}>
+                    Weather: {weather.weather[0].main}
+                </Typography>
+                <ConvertTemperature unit={unit} temp = {weather.main.temp} header ="Temperature"/>
                 <Typography variant="body1" color="text.secondary" style={{fontSize:"20px"}} fontWeight="bold">
                     Wind: {weather.wind.speed} m/s, {weather.wind.deg}°
                 </Typography>

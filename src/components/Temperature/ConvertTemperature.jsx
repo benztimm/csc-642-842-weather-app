@@ -2,7 +2,7 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 
 function ConvertTemperature(props) {
-    const { temp, unit } = props;
+    const { temp, unit,header } = props;
     function getConvertedTemperature(temp, targetUnit) {
         switch (targetUnit) {
             case "Celcius":
@@ -18,7 +18,7 @@ function ConvertTemperature(props) {
     return (
 
         <Typography variant="body1" color="text.secondary" fontWeight="bold" style={{fontSize:"20px"}}>
-            Temperature: {getConvertedTemperature(temp, unit).toFixed(2)}{" "}
+            {header}: {getConvertedTemperature(temp, unit).toFixed(2)}{" "}
             {unit === "Fahrenheit" ? "°F" : "°C"}
         </Typography>
     );
