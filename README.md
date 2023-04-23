@@ -45,6 +45,10 @@ module.exports = {
 
 ---
 # Running the project
+## Proxyserver
+In `/proxyserver` Directory, run
+- `npm install` for installing all the dependency
+- `node proxy-server.js` for starting the proxyserver
 ## Frontend
 In this Directory, run
 - `npm install` for installing all the dependency
