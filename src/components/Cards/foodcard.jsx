@@ -33,7 +33,7 @@ function foodCard(props) {
                     </Typography>
                 </CardContent>
                 <CardActions sx={{ justifyContent: 'center' }}>
-                    <Button variant="contained" href={food.url}>Learn More..</Button>
+                    <Button variant="contained" href={food.url} target="_blank">Learn More..</Button>
                 </CardActions>
             </Card>
         )

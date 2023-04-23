@@ -34,7 +34,7 @@ function newsCard(props) {
                     </Typography>
                 </CardContent>
                 <CardActions sx={{ justifyContent: 'center' }}>
-                    <Button variant="contained" href={news.url}>Learn More..</Button>
+                    <Button  variant="contained" href={news.url} target="_blank">Learn More..</Button>
                 </CardActions>
             </Card>
         )
