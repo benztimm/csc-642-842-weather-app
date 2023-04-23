@@ -1,7 +1,7 @@
 const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
-const {apiKey, yelpBaseUrl} = require("./data.js");
+const {apiKey, yelpBaseUrl} = require("./proxydata.js");
 
 const app = express();
 app.use(cors());
