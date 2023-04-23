@@ -10,6 +10,7 @@ function App() {
       <div className="App">
         <ResponsiveAppBar />
         <Routes>
+          <Route path="/" element={<Weather />}></Route>
           <Route path="/weather" element={<Weather />}></Route>
           <Route path="/map" element={<MapPage />}> </Route>
           <Route path="/trip" element={<TripPage />}> </Route>

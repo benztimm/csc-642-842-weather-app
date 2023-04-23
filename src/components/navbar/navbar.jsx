@@ -43,7 +43,6 @@ function ResponsiveAppBar() {
         if (storedUnit) {
             setUnit(storedUnit);
         }
-        console.log("unit", unit);
     }, [unit]);
 
     const handleUnitChange = (event) => {
@@ -111,7 +110,6 @@ function ResponsiveAppBar() {
                             ))}
                         </Menu>
                     </Box>
-                    <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                     <Typography
                         variant="h5"
                         noWrap
@@ -128,7 +126,7 @@ function ResponsiveAppBar() {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        Group name
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (

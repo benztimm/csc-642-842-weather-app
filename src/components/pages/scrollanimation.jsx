@@ -26,7 +26,10 @@ const ScrollAnimation = ({ children }) => {
 
   return (
     <ScrollTrigger onEnter={onEnterViewport} onExit={onExitViewport}>
-      <div ref={animatedElement} className="element-to-animate">
+      <div ref={animatedElement} className="element-to-animate" style={{display: 'flex',
+                flexDirection: "column",
+                justifyContent: 'center',
+                alignItems: 'center',}}>
         {children}
       </div>
     </ScrollTrigger>

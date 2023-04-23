@@ -1,12 +1,17 @@
 .element-to-animate {
     opacity: 0;
-    transition: opacity 1s ease-in-out;
+    transition: all 1s ease-in-out;
   }
   
   .element-to-animate.visible {
     opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
   }
   
   .element-to-animate.hidden {
     opacity: 0;
+    filter: blur(5px);
+    transform: translate(-100px);
+    transition: all 1s ease-in-out;
   }
