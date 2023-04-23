@@ -9,7 +9,7 @@ import ConvertTemperature from '../Temperature/ConvertTemperature.jsx';
 import ScrollAnimation from "./scrollanimation";
 
 import WeatherCard from '../Cards/weathercard.jsx';
-import NewsCard from '../Cards/new.jsx';
+import NewsCard from '../Cards/newcard.jsx';
 import FoodCard from '../Cards/foodcard.jsx';
 
 import weatherJson from '../statics/weather.json';
