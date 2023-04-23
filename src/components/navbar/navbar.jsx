@@ -24,6 +24,7 @@ function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const [unit, setUnit] = useState("Celsius");
+    const [setting, setSetting] = useState("temp_new");
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -43,12 +44,22 @@ function ResponsiveAppBar() {
         if (storedUnit) {
             setUnit(storedUnit);
         }
-    }, [unit]);
+        const storedSetting = localStorage.getItem("setting");
+        if (storedSetting) {
+            setSetting(storedSetting);
+        }
+    }, [unit,setting]);
 
     const handleUnitChange = (event) => {
         const newUnit = event.target.value;
         setUnit(newUnit);
         localStorage.setItem("unit", newUnit);
+    };
+
+    const handleSettingChange = (event) => {
+        const newSetting = event.target.value;
+        setSetting(newSetting);
+        localStorage.setItem("setting", newSetting);
     };
 
     return (
@@ -176,7 +187,7 @@ function ResponsiveAppBar() {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            <FormControl sx={{ m: 1, minWidth: 120 }} style={{ backgroundColor: "white" }}>
+                            <FormControl sx={{ m: 1, minWidth: 120,display:"flex",flexDirection:"column" }} style={{ backgroundColor: "white" }}>
                                 <InputLabel id="demo-simple-select-helper-label" style={{ backgroundColor: "white" }}>Unit</InputLabel>
                                 <Select
                                     labelId="demo-simple-select-helper-label"
@@ -185,9 +196,25 @@ function ResponsiveAppBar() {
                                     label="Unit"
                                     onChange={handleUnitChange}
                                 >
-                                    <MenuItem value={"Celcius"}>Celcius</MenuItem>
+                                    <MenuItem value={"Celsius"}>Celsius</MenuItem>
                                     <MenuItem value={"Fahrenheit"}>Fahrenheit</MenuItem>
 
+                                </Select>
+                            </FormControl>
+                            <FormControl sx={{ m: 1, minWidth: 120 }} style={{ backgroundColor: "white" }}>
+                                <InputLabel id="demo-simple-select-helper-label" style={{ backgroundColor: "white" }}>Map Setting</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-helper-label"
+                                    id="demo-simple-select-helper"
+                                    value={setting}
+                                    label="Map Setting"
+                                    onChange={handleSettingChange}
+                                >
+                                    <MenuItem value={"temp_new"}>Temperature</MenuItem>
+                                    <MenuItem value={"clouds_new"}>Clouds</MenuItem>
+                                    <MenuItem value={"precipitation_new"}>Precipitation</MenuItem>
+                                    <MenuItem value={"rain_new"}>Rain</MenuItem>
+                                    <MenuItem value={"snow_new"}>Snow</MenuItem>
                                 </Select>
                             </FormControl>
                         </Menu>

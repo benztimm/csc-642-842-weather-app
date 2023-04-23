@@ -5,7 +5,7 @@ function ConvertTemperature(props) {
     const { temp, unit,header } = props;
     function getConvertedTemperature(temp, targetUnit) {
         switch (targetUnit) {
-            case "Celcius":
+            case "Celsius":
                 return temp - 273.15;
             case "Fahrenheit":
                 return ((temp - 273.15) * 9) / 5 + 32;
