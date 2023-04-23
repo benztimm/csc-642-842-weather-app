@@ -1,0 +1,152 @@
+{
+    "businesses": [
+        {
+            "id": "f-m7-hyFzkf0HSEeQ2s-9A",
+            "alias": "fog-harbor-fish-house-san-francisco-2",
+            "name": "Fog Harbor Fish House",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/by8Hh63BLPv_HUqRUdsp_w/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/fog-harbor-fish-house-san-francisco-2?adjust_creative=mniDDuSaXa30bNdvECTaHw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=mniDDuSaXa30bNdvECTaHw",
+            "review_count": 9168,
+            "categories": [
+                {
+                    "alias": "seafood",
+                    "title": "Seafood"
+                },
+                {
+                    "alias": "wine_bars",
+                    "title": "Wine Bars"
+                },
+                {
+                    "alias": "cocktailbars",
+                    "title": "Cocktail Bars"
+                }
+            ],
+            "rating": 4.5,
+            "coordinates": {
+                "latitude": 37.80898821475503,
+                "longitude": -122.41029651587517
+            },
+            "transactions": [
+                "restaurant_reservation"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "39 Pier",
+                "address2": "Ste a - 202",
+                "address3": "",
+                "city": "San Francisco",
+                "zip_code": "94133",
+                "country": "US",
+                "state": "CA",
+                "display_address": [
+                    "39 Pier",
+                    "Ste a - 202",
+                    "San Francisco, CA 94133"
+                ]
+            },
+            "phone": "+14159692010",
+            "display_phone": "(415) 969-2010",
+            "distance": 5820.143221179387
+        },
+        {
+            "id": "oT08T3Vpn1I7jDmrBBRMTw",
+            "alias": "house-of-prime-rib-san-francisco",
+            "name": "House of Prime Rib",
+            "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/HLrjaMoAgYSac0vx71YpCA/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/house-of-prime-rib-san-francisco?adjust_creative=mniDDuSaXa30bNdvECTaHw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=mniDDuSaXa30bNdvECTaHw",
+            "review_count": 8495,
+            "categories": [
+                {
+                    "alias": "tradamerican",
+                    "title": "American (Traditional)"
+                },
+                {
+                    "alias": "steak",
+                    "title": "Steakhouses"
+                },
+                {
+                    "alias": "wine_bars",
+                    "title": "Wine Bars"
+                }
+            ],
+            "rating": 4.0,
+            "coordinates": {
+                "latitude": 37.79338,
+                "longitude": -122.4225
+            },
+            "transactions": [],
+            "price": "$$$",
+            "location": {
+                "address1": "1906 Van Ness Ave",
+                "address2": "",
+                "address3": "",
+                "city": "San Francisco",
+                "zip_code": "94109",
+                "country": "US",
+                "state": "CA",
+                "display_address": [
+                    "1906 Van Ness Ave",
+                    "San Francisco, CA 94109"
+                ]
+            },
+            "phone": "+14158854605",
+            "display_phone": "(415) 885-4605",
+            "distance": 3827.4799374720046
+        },
+        {
+            "id": "WavvLdfdP6g8aZTtbBQHTw",
+            "alias": "gary-danko-san-francisco",
+            "name": "Gary Danko",
+            "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/eyYUz3Xl7NtcJeN7x7SQwg/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/gary-danko-san-francisco?adjust_creative=mniDDuSaXa30bNdvECTaHw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=mniDDuSaXa30bNdvECTaHw",
+            "review_count": 5837,
+            "categories": [
+                {
+                    "alias": "newamerican",
+                    "title": "American (New)"
+                },
+                {
+                    "alias": "french",
+                    "title": "French"
+                },
+                {
+                    "alias": "wine_bars",
+                    "title": "Wine Bars"
+                }
+            ],
+            "rating": 4.5,
+            "coordinates": {
+                "latitude": 37.80587,
+                "longitude": -122.42058
+            },
+            "transactions": [],
+            "price": "$$$$",
+            "location": {
+                "address1": "800 N Point St",
+                "address2": "",
+                "address3": "",
+                "city": "San Francisco",
+                "zip_code": "94109",
+                "country": "US",
+                "state": "CA",
+                "display_address": [
+                    "800 N Point St",
+                    "San Francisco, CA 94109"
+                ]
+            },
+            "phone": "+14157492060",
+            "display_phone": "(415) 749-2060",
+            "distance": 5191.341803207417
+        }
+    ],
+    "total": 8000,
+    "region": {
+        "center": {
+            "longitude": -122.43644714355469,
+            "latitude": 37.76089938976322
+        }
+    }
+}

@@ -11,12 +11,12 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-import Logo from './logo.png';
+import Logo from './static/logo.png';
 import SettingsIcon from '@mui/icons-material/Settings';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
+import { Link } from 'react-router-dom';
 
 const pages = ['Weather', 'Trip', 'Map'];
 
@@ -24,6 +24,7 @@ function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const [unit, setUnit] = useState("Celsius");
+    const [setting, setSetting] = useState("temp_new");
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -43,8 +44,11 @@ function ResponsiveAppBar() {
         if (storedUnit) {
             setUnit(storedUnit);
         }
-        console.log("unit", unit);
-    }, [unit]);
+        const storedSetting = localStorage.getItem("setting");
+        if (storedSetting) {
+            setSetting(storedSetting);
+        }
+    }, [unit,setting]);
 
     const handleUnitChange = (event) => {
         const newUnit = event.target.value;
@@ -52,8 +56,14 @@ function ResponsiveAppBar() {
         localStorage.setItem("unit", newUnit);
     };
 
+    const handleSettingChange = (event) => {
+        const newSetting = event.target.value;
+        setSetting(newSetting);
+        localStorage.setItem("setting", newSetting);
+    };
+
     return (
-        <AppBar position="static">
+        <AppBar position="fixed">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <img src={Logo} alt="altimg"width={30} height={30} />
@@ -106,12 +116,15 @@ function ResponsiveAppBar() {
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
+                                    <Typography 
+                                    component={Link}
+                                    style={{ textDecoration: 'none', color: 'inherit' }}
+                                    to={`/${page.toLowerCase()}`}
+                                    textAlign="center">{page}</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
                     </Box>
-                    <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                     <Typography
                         variant="h5"
                         noWrap
@@ -128,7 +141,7 @@ function ResponsiveAppBar() {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        Group name
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
@@ -145,9 +158,18 @@ function ResponsiveAppBar() {
 
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Button variant='contained' style={{ backgroundColor: 'white' }}><SettingsIcon color="primary" /></Button>
-                            </IconButton>
+                                <Button 
+                                variant='contained' 
+                                onClick={handleOpenUserMenu}
+                                style={{backgroundColor:"white",color:"#1976d2",fontWeight: 'bold'}}
+                                startIcon={
+                                <SettingsIcon 
+                                    fontSize='inherit'
+                                    color='primary'
+                                    style={{fontSize:"30px",paddingLeft:"10px"}}/>
+                                }>
+                                    
+                                </Button>
                         </Tooltip>
                         <Menu
                             sx={{ mt: '45px' }}
@@ -165,18 +187,34 @@ function ResponsiveAppBar() {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            <FormControl sx={{ m: 1, minWidth: 120 }} style={{ backgroundColor: "white" }}>
+                            <FormControl sx={{ m: 1, minWidth: 120,display:"flex",flexDirection:"column" }} style={{ backgroundColor: "white" }}>
                                 <InputLabel id="demo-simple-select-helper-label" style={{ backgroundColor: "white" }}>Unit</InputLabel>
                                 <Select
                                     labelId="demo-simple-select-helper-label"
                                     id="demo-simple-select-helper"
                                     value={unit}
-                                    label="Age"
+                                    label="Unit"
                                     onChange={handleUnitChange}
                                 >
-                                    <MenuItem value={"Celcius"}>Celcius</MenuItem>
+                                    <MenuItem value={"Celsius"}>Celsius</MenuItem>
                                     <MenuItem value={"Fahrenheit"}>Fahrenheit</MenuItem>
 
+                                </Select>
+                            </FormControl>
+                            <FormControl sx={{ m: 1, minWidth: 120 }} style={{ backgroundColor: "white" }}>
+                                <InputLabel id="demo-simple-select-helper-label" style={{ backgroundColor: "white" }}>Map Setting</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-helper-label"
+                                    id="demo-simple-select-helper"
+                                    value={setting}
+                                    label="Map Setting"
+                                    onChange={handleSettingChange}
+                                >
+                                    <MenuItem value={"temp_new"}>Temperature</MenuItem>
+                                    <MenuItem value={"clouds_new"}>Clouds</MenuItem>
+                                    <MenuItem value={"precipitation_new"}>Precipitation</MenuItem>
+                                    <MenuItem value={"rain_new"}>Rain</MenuItem>
+                                    <MenuItem value={"snow_new"}>Snow</MenuItem>
                                 </Select>
                             </FormControl>
                         </Menu>

@@ -1,9 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ResponsiveAppBar from './components/navbar/navbar.jsx';
 import Weather from './components/pages/weather.jsx';
-import MapPage from './components/pages/map';
+import WeatherMap from './components/pages/map';
 import TripPage from './components/pages/trip';
 function App() {
   return (
@@ -11,8 +10,9 @@ function App() {
       <div className="App">
         <ResponsiveAppBar />
         <Routes>
+          <Route path="/" element={<Weather />}></Route>
           <Route path="/weather" element={<Weather />}></Route>
-          <Route path="/map" element={<MapPage />}> </Route>
+          <Route path="/map" element={<WeatherMap />}> </Route>
           <Route path="/trip" element={<TripPage />}> </Route>
         </Routes>
       </div>
