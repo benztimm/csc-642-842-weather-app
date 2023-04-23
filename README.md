@@ -1,7 +1,7 @@
 # Weather Application
 This project is the Weather application that allow use to search the weather based on the various selection of the city in USA.
 
----
+
 ## API
 1. Openweathermap API
     - Current Weather Data [https://openweathermap.org/current](https://openweathermap.org/current)
@@ -13,7 +13,7 @@ This project is the Weather application that allow use to search the weather bas
     - Everything v2 [https://newsapi.org/docs/endpoints/everything](https://newsapi.org/docs/endpoints/everything)
 4. Pexels API
     - [https://www.pexels.com/api/documentation/#photos-search](https://www.pexels.com/api/documentation/#photos-search)
----
+
 
 ## Setup
 **I did not provide the API key in this Github repository so you need to setup your, here is how.**
@@ -43,7 +43,7 @@ module.exports = {
 };
 ```
 
----
+
 # Running the project
 ## Proxyserver
 In `/proxyserver` Directory, run
