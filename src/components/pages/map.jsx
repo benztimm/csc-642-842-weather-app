@@ -23,7 +23,7 @@ const WeatherMap = () => {
       <MapContainer
         center={[37.7749, -122.4194]} // Set your desired map center (latitude, longitude)
         zoom={13}
-        style={{ height: '100vh', width: '100%' }}
+        style={{ height: '92vh', width: '100%', marginTop: '70px' }}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
