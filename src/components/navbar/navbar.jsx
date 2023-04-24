@@ -24,7 +24,7 @@ function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const [unit, setUnit] = useState("Celsius");
-    const [setting, setSetting] = useState("temp_new");
+    const [setting, setSetting] = useState("TA2");
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -51,8 +51,8 @@ function ResponsiveAppBar() {
         if (storedSetting) {
             setSetting(storedSetting);
         }else{
-            sessionStorage.setItem("setting", "temp_new");
-            setSetting("temp_new")
+            sessionStorage.setItem("setting", "TA2");
+            setSetting("TA2")
         }
     }, [unit,setting]);
 
@@ -216,11 +216,15 @@ function ResponsiveAppBar() {
                                     label="Map Setting"
                                     onChange={handleSettingChange}
                                 >
-                                    <MenuItem value={"temp_new"}>Temperature</MenuItem>
-                                    <MenuItem value={"clouds_new"}>Clouds</MenuItem>
-                                    <MenuItem value={"precipitation_new"}>Precipitation</MenuItem>
-                                    <MenuItem value={"rain_new"}>Rain</MenuItem>
-                                    <MenuItem value={"snow_new"}>Snow</MenuItem>
+                                    <MenuItem value={"TA2"}>Air Temperature</MenuItem>
+                                    <MenuItem value={"CL"}>Clouds</MenuItem>
+                                    <MenuItem value={"PA0"}>Precipitation</MenuItem>
+                                    <MenuItem value={"PAR0"}>Rain</MenuItem>
+                                    <MenuItem value={"PAS0"}>Snow</MenuItem>
+                                    <MenuItem value={"APM"}>Pressure</MenuItem>
+                                    <MenuItem value={"HRD0"}>Humidity</MenuItem>
+                                    <MenuItem value={"WND"}>Wind speed</MenuItem>
+                                    <MenuItem value={"TS0"}>Soil temperature</MenuItem>
                                 </Select>
                             </FormControl>
                         </Menu>

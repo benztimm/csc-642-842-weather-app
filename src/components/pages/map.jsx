@@ -21,7 +21,9 @@ const WeatherMap = () => {
       return () => clearInterval(interval);
   }, [selectedLayer]);
 
-    const weatherLayerUrl = `https://tile.openweathermap.org/map/${selectedLayer}/{z}/{x}/{y}.png?appid=${API_KEY}`;
+    //const weatherLayerUrl = `https://tile.openweathermap.org/map/${selectedLayer}/{z}/{x}/{y}.png?appid=${API_KEY}`;
+    const weatherLayerUrl =`http://maps.openweathermap.org/maps/2.0/weather/${selectedLayer}/{z}/{x}/{y}?appid=${API_KEY}`
+
     return (
       <MapContainer
         center={[37.7749, -122.4194]} // Set your desired map center (latitude, longitude)
@@ -34,7 +36,7 @@ const WeatherMap = () => {
         />
         <TileLayer
           url={weatherLayerUrl}
-          opacity={1}
+          opacity={.8}
         />
       </MapContainer>
     );
