@@ -20,10 +20,10 @@ import cityPictureJson from '../statics/picture.json';
 function Weather() {
     const [unit, setUnit] = useState(sessionStorage.getItem("unit"));
     const [city, setCity] = useState(null);
-    const [weather, setWeather] = useState(null);
-    const [news, setNews] = useState(null);
-    const [food, setFood] = useState(null);
-    const [cityPicture, setCityPicture] = useState(null);
+    const [weather, setWeather] = useState(weatherJson);
+    const [news, setNews] = useState(newsJson);
+    const [food, setFood] = useState(foodJson);
+    const [cityPicture, setCityPicture] = useState(cityPictureJson);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

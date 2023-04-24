@@ -8,6 +8,8 @@ import { uniqueCitylist, API_KEY, NEWS_API_KEY, PEXEL_API_KEY } from '../statics
 import ScrollAnimation from "./scrollanimation";
 import weatherJson from '../statics/weather-five.json';
 import cityPictureJson from '../statics/picture-five.json';
+import newsJson from '../statics/news.json';
+import foodJson from '../statics/food.json';
 
 
 import WeatherCardSmall from '../Cards/weathercardsmall.jsx';
@@ -18,13 +20,13 @@ import FoodCard from '../Cards/foodcard.jsx';
 function Trip() {
     const [departure, setDeparture] = useState(null);
     const [destination, setDestination] = useState(null);
-    const [departureWeather, setDepartureWeather] = useState(null);
-    const [destinationWeather, setDestinationWeather] = useState(null);
+    const [departureWeather, setDepartureWeather] = useState(weatherJson);
+    const [destinationWeather, setDestinationWeather] = useState(weatherJson);
     const [unit, setUnit] = useState(sessionStorage.getItem("unit"));
-    const [departurePicture, setDeparturePicture] = useState(null);
-    const [destinationPicture, setDestinationPicture] = useState(null);
-    const [news, setNews] = useState(null);
-    const [food, setFood] = useState(null);
+    const [departurePicture, setDeparturePicture] = useState(cityPictureJson);
+    const [destinationPicture, setDestinationPicture] = useState(cityPictureJson);
+    const [news, setNews] = useState(newsJson);
+    const [food, setFood] = useState(foodJson);
 
 
     const handleSubmit = async (e) => {
