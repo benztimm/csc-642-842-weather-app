@@ -4,14 +4,14 @@ import 'leaflet/dist/leaflet.css';
 import { API_KEY } from '../statics/data.js';
 
 const WeatherMap = () => {
-    const [selectedLayer, setSelectedLayer] = useState('temp_new');
+    const [selectedLayer, setSelectedLayer] = useState('TA2');
 
 
     useEffect(() => {
       const interval = setInterval(() => {
           const storedUnit = sessionStorage.getItem('setting');
           if (storedUnit===null){
-            sessionStorage.setItem("setting", "temp_new");
+            sessionStorage.setItem("setting", "TA2");
         }
           if (selectedLayer !== storedUnit) {
             setSelectedLayer(storedUnit);
