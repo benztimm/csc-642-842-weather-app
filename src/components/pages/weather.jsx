@@ -19,7 +19,7 @@ import cityPictureJson from '../statics/picture.json';
 
 function Weather() {
     const [unit, setUnit] = useState(sessionStorage.getItem("unit"));
-    const [city, setCity] = useState(null);
+    const [city, setCity] = useState('San Francisco');
     const [weather, setWeather] = useState(weatherJson);
     const [news, setNews] = useState(newsJson);
     const [food, setFood] = useState(foodJson);
@@ -103,7 +103,7 @@ function Weather() {
             </ScrollAnimation>
             <ScrollAnimation>
                 {news && <Typography variant="body1" color="text.secondary" fontWeight="bold" style={{ fontSize: "50px", marginTop: "60px" }}>
-                    NEWS
+                    News in {city}
                 </Typography>}
 
                 {news && <NewsCard news={news} />}
@@ -111,7 +111,7 @@ function Weather() {
 
             <ScrollAnimation>
                 {food && <Typography variant="body1" color="text.secondary" fontWeight="bold" style={{ fontSize: "50px", marginTop: "20px" }}>
-                    FOOD
+                    Food in {city}
                 </Typography>}
                 {food && <FoodCard food={food} />}
             </ScrollAnimation>

@@ -18,8 +18,8 @@ import FoodCard from '../Cards/foodcard.jsx';
 
 
 function Trip() {
-    const [departure, setDeparture] = useState(null);
-    const [destination, setDestination] = useState(null);
+    const [departure, setDeparture] = useState('San Francisco');
+    const [destination, setDestination] = useState('San Francisco');
     const [departureWeather, setDepartureWeather] = useState(weatherJson);
     const [destinationWeather, setDestinationWeather] = useState(weatherJson);
     const [unit, setUnit] = useState(sessionStorage.getItem("unit"));
@@ -117,11 +117,11 @@ function Trip() {
                 <Button variant="contained" type='submit' style={{ marginLeft: '10px' }}>Search</Button>
             </form>
             <ScrollAnimation>
-                {departureWeather && <Typography variant="body1" color="text.secondary" fontWeight="bold" style={{ fontSize: "30px", marginTop: "10px" }}>Departure Weather</Typography>}
+                {departureWeather && <Typography variant="body1" color="text.secondary" fontWeight="bold" style={{ fontSize: "30px", marginTop: "10px" }}>{departure} Weather</Typography>}
                 {departureWeather && <WeatherCardSmall weather={departureWeather} picture={departurePicture} unit={unit} />}
             </ScrollAnimation>
             <ScrollAnimation>
-                {destinationWeather && <Typography variant="body1" color="text.secondary" fontWeight="bold" style={{ fontSize: "30px", marginTop: "10px" }}>Destination Weather</Typography>}
+                {destinationWeather && <Typography variant="body1" color="text.secondary" fontWeight="bold" style={{ fontSize: "30px", marginTop: "10px" }}>{destination} Weather</Typography>}
                 {destinationWeather && <WeatherCardSmall weather={destinationWeather} picture={destinationPicture} unit={unit} />}
             </ScrollAnimation>
 
