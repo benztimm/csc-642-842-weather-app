@@ -40,26 +40,32 @@ function ResponsiveAppBar() {
         setAnchorElUser(null);
     };
     useEffect(() => {
-        const storedUnit = localStorage.getItem("unit");
+        const storedUnit = sessionStorage.getItem("unit");
         if (storedUnit) {
             setUnit(storedUnit);
+        }else{
+            sessionStorage.setItem("unit", "Celsius");
+            setUnit("Celsius")
         }
-        const storedSetting = localStorage.getItem("setting");
+        const storedSetting = sessionStorage.getItem("setting");
         if (storedSetting) {
             setSetting(storedSetting);
+        }else{
+            sessionStorage.setItem("setting", "temp_new");
+            setSetting("temp_new")
         }
     }, [unit,setting]);
 
     const handleUnitChange = (event) => {
         const newUnit = event.target.value;
         setUnit(newUnit);
-        localStorage.setItem("unit", newUnit);
+        sessionStorage.setItem("unit", newUnit);
     };
 
     const handleSettingChange = (event) => {
         const newSetting = event.target.value;
         setSetting(newSetting);
-        localStorage.setItem("setting", newSetting);
+        sessionStorage.setItem("setting", newSetting);
     };
 
     return (

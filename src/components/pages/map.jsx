@@ -9,7 +9,10 @@ const WeatherMap = () => {
 
     useEffect(() => {
       const interval = setInterval(() => {
-          const storedUnit = localStorage.getItem('setting');
+          const storedUnit = sessionStorage.getItem('setting');
+          if (storedUnit===null){
+            sessionStorage.setItem("setting", "temp_new");
+        }
           if (selectedLayer !== storedUnit) {
             setSelectedLayer(storedUnit);
           }

@@ -18,8 +18,8 @@ import cityPictureJson from '../statics/picture.json';
 
 
 function Weather() {
-    const [unit, setUnit] = useState(localStorage.getItem("unit"));
-    const [city, setCity] = useState("");
+    const [unit, setUnit] = useState(sessionStorage.getItem("unit"));
+    const [city, setCity] = useState(null);
     const [weather, setWeather] = useState(null);
     const [news, setNews] = useState(null);
     const [food, setFood] = useState(null);
@@ -57,7 +57,10 @@ function Weather() {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            const storedUnit = localStorage.getItem('unit');
+            const storedUnit = sessionStorage.getItem('unit');
+            if (storedUnit === null) {
+                sessionStorage.setItem("unit", "Celsius");
+            }
             if (storedUnit !== unit) {
                 setUnit(storedUnit);
             }
