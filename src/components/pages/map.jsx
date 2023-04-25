@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState,useEffect } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { API_KEY } from '../statics/data.js';
@@ -22,7 +22,9 @@ const WeatherMap = () => {
       return () => clearInterval(interval);
   }, [selectedLayer]);
 
-    const weatherLayerUrl = `https://tile.openweathermap.org/map/${selectedLayer}/{z}/{x}/{y}.png?appid=${API_KEY}`;
+    //const weatherLayerUrl = `https://tile.openweathermap.org/map/${selectedLayer}/{z}/{x}/{y}.png?appid=${API_KEY}`;
+    const weatherLayerUrl =`http://maps.openweathermap.org/maps/2.0/weather/${selectedLayer}/{z}/{x}/{y}?appid=${API_KEY}`
+
     return (
       <MapContainer
         center={[37.7749, -122.4194]} // Set your desired map center (latitude, longitude)
@@ -35,11 +37,7 @@ const WeatherMap = () => {
         />
         <TileLayer
           url={weatherLayerUrl}
-<<<<<<< HEAD
-          opacity={1}
-=======
           opacity={selectedLayer === 'HRD0'?0.6:0.8}
->>>>>>> master
         />
           <Legend />
       </MapContainer>
