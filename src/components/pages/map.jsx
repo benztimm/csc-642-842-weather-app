@@ -35,11 +35,7 @@ const WeatherMap = () => {
         />
         <TileLayer
           url={weatherLayerUrl}
-<<<<<<< HEAD
-          opacity={1}
-=======
           opacity={selectedLayer === 'HRD0'?0.6:0.8}
->>>>>>> master
         />
           <Legend />
       </MapContainer>
