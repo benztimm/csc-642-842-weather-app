@@ -11,10 +11,18 @@ function newsCard(props) {
     const { news } = props;
     function NewsCard(news) {
         return (
-            <Card sx={{ width: "33%" ,maxHeight :"650px"}}>
+            <Card sx={{ width: "33%"}}>
                 <CardHeader
                     title={news.title}
                     subheader={news.author}
+                    sx = {{
+                        height: '200px',
+                        overflow: 'auto',
+                        '@media screen and (max-width: 1200px)': {
+                          height: 'auto',
+                          minHeight: '50px',
+                        },
+                      }}
                 />
                 <CardMedia
                     component="img"
@@ -22,7 +30,7 @@ function newsCard(props) {
                     image={news.urlToImage}
                     alt={news.title}
                 />
-                <CardContent sx={{ height: '180px', overflow: 'auto' }}>
+                <CardContent sx={{height: '180px', overflow: 'auto' }}>
                     <Typography variant="body1" color="text.secondary"fontWeight="bold" style={{fontSize:"20px"}}>
                         Source: {news.source.name}
                     </Typography>
@@ -33,7 +41,7 @@ function newsCard(props) {
                         Published At: {new Date(news.publishedAt).toLocaleDateString()}
                     </Typography>
                 </CardContent>
-                <CardActions sx={{ justifyContent: 'center' }}>
+                <CardActions sx={{justifyContent: 'center'}}>
                     <Button  variant="contained" href={news.url} target="_blank">Learn More..</Button>
                 </CardActions>
             </Card>

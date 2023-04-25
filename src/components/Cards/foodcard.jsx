@@ -12,10 +12,15 @@ function foodCard(props) {
     function FoodCard(food) {
         
         return (
-            <Card sx={{ width: "33%" ,maxHeight :"600px"}}>
+            <Card sx={{ width: "33%" }}>
                 <CardHeader
                     title={food.name}
                     subheader={food.location.address1+" "+food.location.city}
+                    sx={{height: '120px',
+                    '@media screen and (max-width: 600px)': {
+                      height: 'auto',
+                      minHeight: '50px',
+                    },}}
                 />
                 <CardMedia
                     component="img"

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { API_KEY } from '../statics/data.js';
+import Legend from '../Legends/legend.jsx';
 
 const WeatherMap = () => {
     const [selectedLayer, setSelectedLayer] = useState('TA2');
@@ -34,9 +35,15 @@ const WeatherMap = () => {
         />
         <TileLayer
           url={weatherLayerUrl}
+<<<<<<< HEAD
           opacity={1}
+=======
+          opacity={selectedLayer === 'HRD0'?0.6:0.8}
+>>>>>>> master
         />
+          <Legend />
       </MapContainer>
+      
     );
   }
   
