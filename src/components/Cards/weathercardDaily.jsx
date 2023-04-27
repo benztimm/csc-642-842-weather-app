@@ -37,7 +37,7 @@ function WeatherCardDaily(props) {
                         }}
                     />
 
-                    <CardContent sx={{}}>
+                    <CardContent sx={{overflow: 'auto'}}>
 
                         <Typography variant="body1" color="text.secondary" fontWeight="bold" style={{ fontSize: "20px" }}>
                             <img style={{
@@ -96,7 +96,7 @@ function WeatherCardDaily(props) {
         )
     }
     return (
-        <Card sx={{ display: "flex", flexWrap: "wrap", gap: "16px", justifyContent: "center", marginBottom: "100px", maxWidth: "90%", overflow: "auto" }}>
+        <Card sx={{ display: "flex", flexWrap: "wrap", gap: "16px", justifyContent: "center", marginBottom: "100px", maxWidth: "90%", boxShadow:"none", padding:"4px" }}>
             {weather && weather.list.map((dailyWeather, index) => <SmallCardDaily
                 key={index}
                 index={index}

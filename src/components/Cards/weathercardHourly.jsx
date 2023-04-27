@@ -19,6 +19,7 @@ function WeatherCardHourly(props) {
                 backgroundImage: `url(${picture.photos[index].src.portrait})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
+                overflow: 'auto',
 
             }}>
                 <ScrollAnimation>
@@ -90,7 +91,7 @@ function WeatherCardHourly(props) {
         )
     }
     return (
-        <Card sx={{ display: "flex", flexWrap: "wrap", gap: "16px", justifyContent: "center", marginBottom: "100px", maxWidth: "90%", overflow: "auto" }}>
+        <Card sx={{ display: "flex", flexWrap: "wrap", gap: "16px", justifyContent: "center", marginBottom: "100px", maxWidth: "90%", boxShadow:"none", padding:"4px" }}>
             {weather && weather.list.map((dailyWeather, index) => <SmallCardHourly
                 key={index}
                 index={index}
