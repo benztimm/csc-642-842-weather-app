@@ -114,11 +114,22 @@ function Trip() {
                 <Button variant="contained" type='submit' style={{ marginLeft: '10px' }}>Search</Button>
             </form>
             <ScrollAnimation>
-                {departureWeather && <Typography variant="body1" color="text.secondary" fontWeight="bold" style={{ fontSize: "30px", marginTop: "10px" }}>{departure} Weather</Typography>}
+                {departureWeather && 
+                <div style={{ display: "flex", flexDirection: "column", width: "85%" }}>
+                    <Typography variant="body1" color="text.secondary" fontWeight="bold" style={{ fontSize: "30px", marginTop: "10px" }}>Departure Weather</Typography>
+                    <div style={{ textAlign: "right", fontSize: "13px" }}><strong>*The image showing the city rather than reflecting the current weather conditions.*</strong></div>
+                    </div>
+                }
                 {departureWeather && <WeatherCardSmall weather={departureWeather} picture={departurePicture} unit={unit} />}
             </ScrollAnimation>
+
             <ScrollAnimation>
-                {destinationWeather && <Typography variant="body1" color="text.secondary" fontWeight="bold" style={{ fontSize: "30px", marginTop: "10px" }}>{destination} Weather</Typography>}
+                {destinationWeather && 
+                 <div style={{ display: "flex", flexDirection: "column", width: "85%" }}>
+                <Typography variant="body1" color="text.secondary" fontWeight="bold" style={{ fontSize: "30px", marginTop: "10px" }}>Destination Weather</Typography>
+                <div style={{ textAlign: "right", fontSize: "13px" }}><strong>*The image showing the city rather than reflecting the current weather conditions.*</strong></div>
+                </div>
+                }
                 {destinationWeather && <WeatherCardSmall weather={destinationWeather} picture={destinationPicture} unit={unit} />}
             </ScrollAnimation>
 

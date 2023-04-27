@@ -51,7 +51,7 @@ function Weather() {
             });
 
 
-            const [weatherHourlyData, weatherDailyData, newsData, foodData,pictureData] = await Promise.all([
+            const [weatherHourlyData, weatherDailyData, newsData, foodData, pictureData] = await Promise.all([
                 weatherHourlyResponse.then((res) => res.json()),
                 weatherDailyResponse.then((res) => res.json()),
                 newsResponse.then((res) => res.json()),
@@ -108,39 +108,41 @@ function Weather() {
                 <Button variant="contained" type='submit' style={{ marginLeft: '10px' }}>Search</Button>
             </form>
 
-                {(weatherDaily || weatherHourly) &&
-                    <div style={{ display: "flex", flexDirection: "column" ,width:"90%" }}>
-                        <div style={{ marginBottom: "10px"}}>
-                            <Button
-                                style={{ alignSelf: "flex-start", marginRight: "10px" }}
-                                variant="outlined"
-                                onClick={handleIsHourly}
-                            >Hourly</Button>
-                            <Button
-                                style={{ alignSelf: "flex-end" }}
-                                variant="outlined"
-                                onClick={handleIsDaily}
-                            >Daily</Button>
-                        </div>
-                        <div style={{ textAlign: "right",fontSize:"13px" }}><strong>*The image showing the city rather than reflecting the current weather conditions.*</strong></div>
-
+            {(weatherDaily || weatherHourly) &&
+                <div style={{ display: "flex", flexDirection: "column", width: "85%" }}>
+                    <div style={{ display: "flex", marginBottom: "10px", justifyContent: "flex-end" }}>
+                        <Button
+                            style={{ marginRight: "10px", alignSelf: "flex-start" }}
+                            variant="outlined"
+                            onClick={handleIsHourly}
+                        >Hourly</Button>
+                        <Button
+                            style={{ alignSelf: "flex-end" }}
+                            variant="outlined"
+                            onClick={handleIsDaily}
+                        >Daily</Button>
                     </div>
-                }
+
+                    <div style={{ textAlign: "right", fontSize: "13px" }}><strong>*The image showing the city rather than reflecting the current weather conditions.*</strong></div>
+
+                </div>
+            }
 
             <ScrollAnimation>
-            {weatherHourly && isHourly &&
-                < WeatherCardHourly
-                    weather={weatherHourly}
-                    picture={cityPicture}
-                    unit={unit} />}
+                {weatherHourly && isHourly &&
+                    < WeatherCardHourly
+                        weather={weatherHourly}
+                        picture={cityPicture}
+                        unit={unit} />}
 
-            {weatherDaily && isDaily &&
-                < WeatherCardDaily
-                    weather={weatherDaily}
-                    picture={cityPicture}
-                    unit={unit} />
-            }
-        </ScrollAnimation>
+                {weatherDaily && isDaily &&
+
+                    < WeatherCardDaily
+                        weather={weatherDaily}
+                        picture={cityPicture}
+                        unit={unit} />
+                }
+            </ScrollAnimation>
             <ScrollAnimation>
                 {news && <Typography variant="body1" color="text.secondary" fontWeight="bold" style={{ fontSize: "50px", marginTop: "60px" }}>
                     News in {city}
