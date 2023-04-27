@@ -7,48 +7,63 @@ import Typography from '@mui/material/Typography';
 import { uniqueCitylist, API_KEY, NEWS_API_KEY, PEXEL_API_KEY } from '../statics/data.js';
 import ScrollAnimation from "./scrollanimation";
 
-import WeatherCard from '../Cards/weathercard.jsx';
 import NewsCard from '../Cards/newcard.jsx';
 import FoodCard from '../Cards/foodcard.jsx';
-
-import weatherJson from '../statics/weather.json';
-import newsJson from '../statics/news.json';
-import foodJson from '../statics/food.json';
-import cityPictureJson from '../statics/picture.json';
-
+import WeatherCardHourly from '../Cards/weathercardHourly.jsx';
+import WeatherCardDaily from '../Cards/weathercardDaily.jsx'
 
 function Weather() {
     const [unit, setUnit] = useState(sessionStorage.getItem("unit"));
-    const [city, setCity] = useState('San Francisco');
-    const [weather, setWeather] = useState(weatherJson);
-    const [news, setNews] = useState(newsJson);
-    const [food, setFood] = useState(foodJson);
-    const [cityPicture, setCityPicture] = useState(cityPictureJson);
+    const [city, setCity] = useState(null);
+    const [weatherDaily, setweatherDaily] = useState(null);
+    const [weatherHourly, setweatherHourly] = useState(null);
+    const [news, setNews] = useState(null);
+    const [food, setFood] = useState(null);
+    const [cityPicture, setCityPicture] = useState(null);
+    const [isHourly, setIsHourly] = useState(true);
+    const [isDaily, setIsDaily] = useState(false);
+
+    const handleIsHourly = (e) => {
+        e.preventDefault();
+        if (isHourly) return;
+        setIsHourly(!isHourly);
+        setIsDaily(!isDaily);
+    };
+    const handleIsDaily = (e) => {
+        e.preventDefault();
+        if (isDaily) return;
+        setIsHourly(!isHourly);
+        setIsDaily(!isDaily);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
 
-            const weatherResponse = fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`);
-            const newsResponse = fetch(`https://newsapi.org/v2/everything?q=${city}&pageSize=3&apiKey=${NEWS_API_KEY}&sources=bbc-news,cnn`)
-            const foodResponse = fetch(`http://localhost:3001/api/yelp?location=${city}&sort_by=best_match&limit=3`)
-            const pictureResponse = fetch(`https://api.pexels.com/v1/search?query=${city}&per_page=1`, {
+            const weatherHourlyResponse = fetch(`https://pro.openweathermap.org/data/2.5/forecast/hourly?q=${city}&appid=${API_KEY}&cnt=8`);
+            const weatherDailyResponse = fetch(`https://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&cnt=8&appid=${API_KEY}`);
+            const newsResponse = fetch(`https://newsapi.org/v2/everything?q=${city}&pageSize=3&apiKey=${NEWS_API_KEY}&sources=bbc-news,cnn`);
+            const foodResponse = fetch(`http://localhost:3001/api/yelp?location=${city}&sort_by=best_match&limit=3`);
+            const pictureResponse = fetch(`https://api.pexels.com/v1/search?query=${city}&per_page=8`, {
                 headers: {
                     "Authorization": PEXEL_API_KEY,
                 },
             });
 
-            const [weatherData, newsData, foodData, pictureData] = await Promise.all([
-                weatherResponse.then((res) => res.json()),
+
+            const [weatherHourlyData, weatherDailyData, newsData, foodData,pictureData] = await Promise.all([
+                weatherHourlyResponse.then((res) => res.json()),
+                weatherDailyResponse.then((res) => res.json()),
                 newsResponse.then((res) => res.json()),
                 foodResponse.then((res) => res.json()),
                 pictureResponse.then((res) => res.json()),
-            ]);
 
-            setWeather(weatherData);
-            setCityPicture(pictureData);
+            ]);
+            setweatherHourly(weatherHourlyData);
+            setweatherDaily(weatherDailyData);
             setNews(newsData);
             setFood(foodData);
+            setCityPicture(pictureData);
 
         } catch (err) {
             console.log(err);
@@ -93,14 +108,39 @@ function Weather() {
                 <Button variant="contained" type='submit' style={{ marginLeft: '10px' }}>Search</Button>
             </form>
 
-            <ScrollAnimation>
-                {weather &&
-                    < WeatherCard
-                        weather={weather}
-                        picture={cityPicture}
-                        unit={unit} />
+                {(weatherDaily || weatherHourly) &&
+                    <div style={{ display: "flex", flexDirection: "column" ,width:"90%" }}>
+                        <div style={{ marginBottom: "10px"}}>
+                            <Button
+                                style={{ alignSelf: "flex-start", marginRight: "10px" }}
+                                variant="outlined"
+                                onClick={handleIsHourly}
+                            >Hourly</Button>
+                            <Button
+                                style={{ alignSelf: "flex-end" }}
+                                variant="outlined"
+                                onClick={handleIsDaily}
+                            >Daily</Button>
+                        </div>
+                        <div style={{ textAlign: "right",fontSize:"13px" }}><strong>*The image showing the city rather than reflecting the current weather conditions.*</strong></div>
+
+                    </div>
                 }
-            </ScrollAnimation>
+
+            <ScrollAnimation>
+            {weatherHourly && isHourly &&
+                < WeatherCardHourly
+                    weather={weatherHourly}
+                    picture={cityPicture}
+                    unit={unit} />}
+
+            {weatherDaily && isDaily &&
+                < WeatherCardDaily
+                    weather={weatherDaily}
+                    picture={cityPicture}
+                    unit={unit} />
+            }
+        </ScrollAnimation>
             <ScrollAnimation>
                 {news && <Typography variant="body1" color="text.secondary" fontWeight="bold" style={{ fontSize: "50px", marginTop: "60px" }}>
                     News in {city}
@@ -122,11 +162,3 @@ function Weather() {
     );
 }
 export default Weather;
-/*
-{weather &&
-    < WeatherCard
-        weather={weather}
-        picture={cityPicture}
-        unit={unit} />
-}
-*/
