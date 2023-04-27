@@ -26,9 +26,6 @@ const WeatherMap = () => {
     setUrl(`http://maps.openweathermap.org/maps/2.0/weather/${selectedLayer}/{z}/{x}/{y}?appid=${API_KEY}&date=${date}`)
     return () => clearInterval(interval);
   }, [selectedLayer, date]);
-
-  const weatherLayerUrl = `http://maps.openweathermap.org/maps/2.0/weather/${selectedLayer}/{z}/{x}/{y}?appid=${API_KEY}`
-
   return (
     <div style={{ marginTop: ' 75px' }}>
       <Button variant="contained"
@@ -51,7 +48,7 @@ const WeatherMap = () => {
       </Button>
       <Button
         variant="outlined"
-        onClick={() => { setDate(Math.floor(Date.now() / 1000)) }}
+        onClick={() => { setDate(now) }}
         sx={{ marginLeft: "10px" }}>
         Reset
       </Button>
