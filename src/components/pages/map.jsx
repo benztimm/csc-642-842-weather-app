@@ -10,7 +10,7 @@ const WeatherMap = () => {
   const [selectedLayer, setSelectedLayer] = useState('TA2');
   const [date, setDate] = useState(Math.floor(Date.now() / 1000));
   const [url, setUrl] = useState(`http://maps.openweathermap.org/maps/2.0/weather/TA2/{z}/{x}/{y}?appid=${API_KEY}&date=${date}`);
-
+  const now = Math.floor(Date.now() / 1000)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -55,7 +55,8 @@ const WeatherMap = () => {
         sx={{ marginLeft: "10px" }}>
         Reset
       </Button>
-      <div style={{ marginBottom: '5px' }}></div>
+      
+      <div style={{ marginBottom: '5px' }}>{selectedLayer === 'TS0' && date>now && <strong style={{fontSize:"15px"}}>Unable to forecast Soil temperature</strong>}</div>
 
 
       <MapContainer
