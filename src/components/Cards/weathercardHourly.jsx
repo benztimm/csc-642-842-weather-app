@@ -31,12 +31,25 @@ function WeatherCardHourly(props) {
                             hour: '2-digit',
                             minute: '2-digit',
                         })}
+                        subheader={weather.city.name + ', ' + weather.city.country}
                         titleTypographyProps={{
                             style: {
                                 backgroundColor: 'white',
                                 display: 'inline',
                                 padding: '2px 4px',
-                                borderRadius: '4px',
+                                borderRadius: 'px',
+                                borderTopLeftRadius: '4px',
+                                borderTopRightRadius: '4px',
+                            },
+                        }}
+                        subheaderTypographyProps={{
+                            style: {
+                                backgroundColor: 'white',
+                                display: '',
+                                padding: '2px 4px',
+                                borderRadius: 'px',
+                                borderBottomLeftRadius: '4px',
+                                borderBottomRightRadius: '4px',
                             },
                         }}
                     />
