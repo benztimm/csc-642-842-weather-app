@@ -11,7 +11,7 @@ function newsCard(props) {
     const { news } = props;
     function NewsCard(news) {
         return (
-            <Card sx={{ width: "33%"}}>
+            <Card sx={{ flexBasis: 'calc(33% - 2 * 16px)',}}>
                 <CardHeader
                     title={news.title}
                     subheader={news.author}
@@ -30,7 +30,7 @@ function newsCard(props) {
                     image={news.urlToImage}
                     alt={news.title}
                 />
-                <CardContent sx={{height: '180px', overflow: 'auto' }}>
+                <CardContent sx={{height: '230px', overflow: 'auto' }}>
                     <Typography variant="body1" color="text.secondary"fontWeight="bold" style={{fontSize:"20px"}}>
                         Source: {news.source.name}
                     </Typography>
@@ -50,7 +50,7 @@ function newsCard(props) {
 
     return (
 
-        <Card style={{ display: "flex", width: '80%', gap: "16px" }} sx={{ maxWidth: '80%' }}>
+        <Card style={{ display: "flex", flexWrap: "wrap", gap: "16px",maxWidth: '80%' }} sx={{  }}>
             {news && news.articles.map((news,index) => <NewsCard key={index} {...news} />)}
         </Card>
 
