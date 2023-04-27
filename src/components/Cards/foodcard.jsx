@@ -12,7 +12,7 @@ function foodCard(props) {
     function FoodCard(food) {
         
         return (
-            <Card sx={{ width: "33%" }}>
+            <Card sx={{ flexBasis: 'calc(33% - 2 * 16px)',borderRadius:"25px" }}>
                 <CardHeader
                     title={food.name}
                     subheader={food.location.address1+" "+food.location.city}
@@ -45,7 +45,7 @@ function foodCard(props) {
     }
 
     return (
-        <Card style={{ display: "flex", width: '80%', gap: "16px" }} sx={{ maxWidth: '80%' }}>
+        <Card style={{ display: "flex",maxWidth: '80%', gap: "16px",flexWrap: "wrap", justifyContent: "center",marginBottom:"100px", boxShadow:"none", padding:"4px" }} sx={{  }}>
             {food && food.businesses.map((food,index) => <FoodCard key={index} {...food} />)}
         </Card>
 
