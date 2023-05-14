@@ -4,10 +4,9 @@ import 'leaflet/dist/leaflet.css';
 import { API_KEY } from '../statics/data.js';
 import Legend from '../Legends/legend.jsx';
 import Button from '@mui/material/Button';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-import dayjs, { Dayjs } from 'dayjs';
+
+import dayjs from 'dayjs';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';

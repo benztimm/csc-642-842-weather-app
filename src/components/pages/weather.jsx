@@ -44,26 +44,20 @@ function Weather() {
             const weatherDailyResponse = fetch(`https://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&cnt=8&appid=${API_KEY}`);
             const newsResponse = fetch(`https://newsapi.org/v2/everything?q=${city}&pageSize=3&apiKey=${NEWS_API_KEY}&sources=bbc-news,cnn`);
             const foodResponse = fetch(`http://localhost:3001/api/yelp?location=${city}&sort_by=best_match&limit=3`);
-            const pictureResponse = fetch(`https://api.pexels.com/v1/search?query=${city}&per_page=8`, {
-                headers: {
-                    "Authorization": PEXEL_API_KEY,
-                },
-            });
 
 
-            const [weatherHourlyData, weatherDailyData, newsData, foodData, pictureData] = await Promise.all([
+
+            const [weatherHourlyData, weatherDailyData, newsData, foodData] = await Promise.all([
                 weatherHourlyResponse.then((res) => res.json()),
                 weatherDailyResponse.then((res) => res.json()),
                 newsResponse.then((res) => res.json()),
                 foodResponse.then((res) => res.json()),
-                pictureResponse.then((res) => res.json()),
 
             ]);
             setweatherHourly(weatherHourlyData);
             setweatherDaily(weatherDailyData);
             setNews(newsData);
             setFood(foodData);
-            setCityPicture(pictureData);
 
         } catch (err) {
             console.log(err);
@@ -122,11 +116,9 @@ function Weather() {
                             onClick={handleIsDaily}
                         >Daily</Button>
                     </div>
-
-                    <div style={{ textAlign: "right", fontSize: "13px" }}><strong>*The image showing the city rather than reflecting the current weather conditions.*</strong></div>
-
                 </div>
             }
+
 
             <ScrollAnimation>
                 {weatherHourly && isHourly &&
