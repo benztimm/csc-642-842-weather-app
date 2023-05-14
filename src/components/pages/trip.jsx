@@ -6,11 +6,11 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Typography from '@mui/material/Typography';
 import { uniqueCitylist, API_KEY, NEWS_API_KEY, PEXEL_API_KEY } from '../statics/data.js';
 import ScrollAnimation from "./scrollanimation";
-import weatherJson from '../statics/weather-five.json';
-import cityPictureJson from '../statics/picture-five.json';
 
 
-import WeatherCardSmall from '../Cards/weathercardsmall.jsx';
+
+
+import WeatherCardSmall from '../Cards/weathercardDaily.jsx';
 import NewsCard from '../Cards/newcard.jsx';
 import FoodCard from '../Cards/foodcard.jsx';
 
@@ -31,16 +31,16 @@ function Trip() {
         e.preventDefault();
         try {
 
-            const departureResponse = fetch(`https://api.openweathermap.org/data/2.5/forecast/daily?q=${departure}&cnt=5&appid=${API_KEY}`);
-            const destinationResponse = fetch(`https://api.openweathermap.org/data/2.5/forecast/daily?q=${destination}&cnt=5&appid=${API_KEY}`);
+            const departureResponse = fetch(`https://api.openweathermap.org/data/2.5/forecast/daily?q=${departure}&cnt=8&appid=${API_KEY}`);
+            const destinationResponse = fetch(`https://api.openweathermap.org/data/2.5/forecast/daily?q=${destination}&cnt=8&appid=${API_KEY}`);
             const newsResponse = fetch(`https://newsapi.org/v2/everything?q=${destination}&pageSize=3&apiKey=${NEWS_API_KEY}&sources=bbc-news,cnn`)
             const foodResponse = fetch(`http://localhost:3001/api/yelp?location=${destination}&sort_by=best_match&limit=3`)
-            const departurePictureResponse = fetch(`https://api.pexels.com/v1/search?query=${departure}&per_page=5`, {
+            const departurePictureResponse = fetch(`https://api.pexels.com/v1/search?query=${departure}&per_page=8`, {
                 headers: {
                     "Authorization": PEXEL_API_KEY,
                 },
             });
-            const destinationPictureResponse = fetch(`https://api.pexels.com/v1/search?query=${destination}&per_page=5`, {
+            const destinationPictureResponse = fetch(`https://api.pexels.com/v1/search?query=${destination}&per_page=8`, {
                 headers: {
                     "Authorization": PEXEL_API_KEY,
                 },
@@ -115,11 +115,22 @@ function Trip() {
                 <Button variant="contained" type='submit' style={{ marginLeft: '10px' }}>Search</Button>
             </form>
             <ScrollAnimation>
-                {departureWeather && <Typography variant="body1" color="text.secondary" fontWeight="bold" style={{ fontSize: "30px", marginTop: "10px" }}>Departure Weather</Typography>}
+                {departureWeather && 
+                <div style={{ display: "flex", flexDirection: "column", width: "85%" }}>
+                    <Typography variant="body1" color="text.secondary" fontWeight="bold" style={{ fontSize: "30px", marginTop: "10px" }}>Departure Weather</Typography>
+                    <div style={{ textAlign: "right", fontSize: "13px" }}><strong>*The image showing the city rather than reflecting the current weather conditions.*</strong></div>
+                    </div>
+                }
                 {departureWeather && <WeatherCardSmall weather={departureWeather} picture={departurePicture} unit={unit} />}
             </ScrollAnimation>
+
             <ScrollAnimation>
-                {destinationWeather && <Typography variant="body1" color="text.secondary" fontWeight="bold" style={{ fontSize: "30px", marginTop: "10px" }}>Destination Weather</Typography>}
+                {destinationWeather && 
+                 <div style={{ display: "flex", flexDirection: "column", width: "85%" }}>
+                <Typography variant="body1" color="text.secondary" fontWeight="bold" style={{ fontSize: "30px", marginTop: "10px" }}>Destination Weather</Typography>
+                <div style={{ textAlign: "right", fontSize: "13px" }}><strong>*The image showing the city rather than reflecting the current weather conditions.*</strong></div>
+                </div>
+                }
                 {destinationWeather && <WeatherCardSmall weather={destinationWeather} picture={destinationPicture} unit={unit} />}
             </ScrollAnimation>
 
