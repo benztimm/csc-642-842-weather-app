@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import ConvertTemperature from '../Temperature/ConvertTemperature.jsx';
 import ScrollAnimation from "../pages/scrollanimation";
-
+import weatherBackground from "../statics/weatherBackground.json"
 function WeatherCardHourly(props) {
     const { weather, picture, unit } = props;
 
@@ -16,7 +16,7 @@ function WeatherCardHourly(props) {
                 flexBasis: 'calc(25% - 2 * 16px)',
                 background: "#1976d2",
                 borderRadius: "25px",
-                backgroundImage: `url(${picture.photos[index].src.portrait})`,
+                backgroundImage: `url(${picture.photos[index].src.portrait})`,//`url(${picture.photos[index].src.portrait})`
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 overflow: 'auto',

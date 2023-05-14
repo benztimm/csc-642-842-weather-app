@@ -19,7 +19,7 @@ function ConvertTemperature(props) {
 
         <Typography variant="body1" color="text.secondary" style={{ fontSize: "20px", display: "inline" }}>
             <strong>{header}: </strong>
-            {getConvertedTemperature(temp, unit).toFixed(2)} {unit === "Fahrenheit" ? "°F" : "°C"}
+            {getConvertedTemperature(temp, unit).toFixed(2)}{unit === "Fahrenheit" ? "°F" : "°C"}
         </Typography>
     );
 }

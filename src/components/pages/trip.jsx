@@ -9,6 +9,7 @@ import ScrollAnimation from "./scrollanimation";
 
 
 
+
 import WeatherCardSmall from '../Cards/weathercardDaily.jsx';
 import NewsCard from '../Cards/newcard.jsx';
 import FoodCard from '../Cards/foodcard.jsx';

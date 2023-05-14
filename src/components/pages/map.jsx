@@ -6,6 +6,13 @@ import Legend from '../Legends/legend.jsx';
 import Button from '@mui/material/Button';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
+import dayjs, { Dayjs } from 'dayjs';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+
+
 const WeatherMap = () => {
   const [selectedLayer, setSelectedLayer] = useState('TA2');
   const [date, setDate] = useState(Math.floor(Date.now() / 1000));
@@ -27,32 +34,24 @@ const WeatherMap = () => {
     return () => clearInterval(interval);
   }, [selectedLayer, date]);
   return (
-    <div style={{ marginTop: ' 75px' }}>
-      <Button variant="contained"
-        onClick={() => { setDate(date - 86400); }}
-        sx={{ marginRight: "10px" }}>
-        <ArrowBackIcon />
-      </Button>
-
-      {(new Date(date * 1000)).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-      })}
-
-      <Button
-        variant="contained"
-        onClick={() => { setDate(date + 86400); }}
-        sx={{ marginLeft: "10px" }}>
-        <ArrowForwardIcon />
-      </Button>
+    <div style={{ marginTop: ' 80px'}}>
+      <div style={{border:"",display:"flex", justifyContent:"center"}}>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DateTimePicker
+          label="Date"
+          value={dayjs.unix(date)}
+          onChange={(newValue) => {setDate(newValue.unix())}}
+          maxDate={dayjs().add(9, 'day')}
+          minDate={dayjs().subtract(2, 'year')}
+        />
+    </LocalizationProvider>
       <Button
         variant="outlined"
         onClick={() => { setDate(now) }}
         sx={{ marginLeft: "10px" }}>
         Reset
       </Button>
-      
+      </div>
       <div style={{ marginBottom: '5px' }}>{selectedLayer === 'TS0' && date>now && <strong style={{fontSize:"15px"}}>Unable to forecast Soil temperature</strong>}</div>
 
 
