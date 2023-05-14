@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
 import Typography from '@mui/material/Typography';
-import { uniqueCitylist, API_KEY, NEWS_API_KEY, PEXEL_API_KEY } from '../statics/data.js';
+import { uniqueCitylist, API_KEY, NEWS_API_KEY } from '../statics/data.js';
 import ScrollAnimation from "./scrollanimation";
 
 
@@ -21,10 +21,9 @@ function Trip() {
     const [departureWeather, setDepartureWeather] = useState(null);
     const [destinationWeather, setDestinationWeather] = useState(null);
     const [unit, setUnit] = useState(sessionStorage.getItem("unit"));
-    const [departurePicture, setDeparturePicture] = useState(null);
-    const [destinationPicture, setDestinationPicture] = useState(null);
     const [news, setNews] = useState(null);
     const [food, setFood] = useState(null);
+
 
 
     const handleSubmit = async (e) => {
@@ -35,31 +34,17 @@ function Trip() {
             const destinationResponse = fetch(`https://api.openweathermap.org/data/2.5/forecast/daily?q=${destination}&cnt=8&appid=${API_KEY}`);
             const newsResponse = fetch(`https://newsapi.org/v2/everything?q=${destination}&pageSize=3&apiKey=${NEWS_API_KEY}&sources=bbc-news,cnn`)
             const foodResponse = fetch(`http://localhost:3001/api/yelp?location=${destination}&sort_by=best_match&limit=3`)
-            const departurePictureResponse = fetch(`https://api.pexels.com/v1/search?query=${departure}&per_page=8`, {
-                headers: {
-                    "Authorization": PEXEL_API_KEY,
-                },
-            });
-            const destinationPictureResponse = fetch(`https://api.pexels.com/v1/search?query=${destination}&per_page=8`, {
-                headers: {
-                    "Authorization": PEXEL_API_KEY,
-                },
-            });
+   
 
-
-            const [departureData, destinationData, newsData, foodData, departurepictureData, destinationpictureData] = await Promise.all([
+            const [departureData, destinationData, newsData, foodData] = await Promise.all([
                 departureResponse.then((res) => res.json()),
                 destinationResponse.then((res) => res.json()),
                 newsResponse.then((res) => res.json()),
                 foodResponse.then((res) => res.json()),
-                departurePictureResponse.then((res) => res.json()),
-                destinationPictureResponse.then((res) => res.json()),
             ]);
 
             setDepartureWeather(departureData);
             setDestinationWeather(destinationData);
-            setDeparturePicture(departurepictureData);
-            setDestinationPicture(destinationpictureData);
             setNews(newsData);
             setFood(foodData);
         } catch (err) {
@@ -118,20 +103,18 @@ function Trip() {
                 {departureWeather && 
                 <div style={{ display: "flex", flexDirection: "column", width: "85%" }}>
                     <Typography variant="body1" color="text.secondary" fontWeight="bold" style={{ fontSize: "30px", marginTop: "10px" }}>Departure Weather</Typography>
-                    <div style={{ textAlign: "right", fontSize: "13px" }}><strong>*The image showing the city rather than reflecting the current weather conditions.*</strong></div>
                     </div>
                 }
-                {departureWeather && <WeatherCardSmall weather={departureWeather} picture={departurePicture} unit={unit} />}
+                {departureWeather && <WeatherCardSmall weather={departureWeather} unit={unit} />}
             </ScrollAnimation>
 
             <ScrollAnimation>
                 {destinationWeather && 
                  <div style={{ display: "flex", flexDirection: "column", width: "85%" }}>
                 <Typography variant="body1" color="text.secondary" fontWeight="bold" style={{ fontSize: "30px", marginTop: "10px" }}>Destination Weather</Typography>
-                <div style={{ textAlign: "right", fontSize: "13px" }}><strong>*The image showing the city rather than reflecting the current weather conditions.*</strong></div>
                 </div>
                 }
-                {destinationWeather && <WeatherCardSmall weather={destinationWeather} picture={destinationPicture} unit={unit} />}
+                {destinationWeather && <WeatherCardSmall weather={destinationWeather} unit={unit} />}
             </ScrollAnimation>
 
             <ScrollAnimation>

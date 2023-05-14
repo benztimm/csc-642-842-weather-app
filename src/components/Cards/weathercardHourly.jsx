@@ -16,7 +16,7 @@ function WeatherCardHourly(props) {
                 flexBasis: 'calc(25% - 2 * 16px)',
                 background: "#1976d2",
                 borderRadius: "25px",
-                backgroundImage: `url(${picture.photos[index].src.portrait})`,//`url(${picture.photos[index].src.portrait})`
+                backgroundImage: `url(${weatherBackground[dailyWeather.weather[0].main]})`,//`url(${picture.photos[index].src.portrait})`
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 overflow: 'auto',
