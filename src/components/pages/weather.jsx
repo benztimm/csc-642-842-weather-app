@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
 import Typography from '@mui/material/Typography';
-import { uniqueCitylist, API_KEY, NEWS_API_KEY, PEXEL_API_KEY } from '../statics/data.js';
+import { uniqueCitylist, API_KEY, NEWS_API_KEY } from '../statics/data.js';
 import ScrollAnimation from "./scrollanimation";
 
 import NewsCard from '../Cards/newcard.jsx';
@@ -19,7 +19,6 @@ function Weather() {
     const [weatherHourly, setweatherHourly] = useState(null);
     const [news, setNews] = useState(null);
     const [food, setFood] = useState(null);
-    const [cityPicture, setCityPicture] = useState(null);
     const [isHourly, setIsHourly] = useState(true);
     const [isDaily, setIsDaily] = useState(false);
 
@@ -124,14 +123,12 @@ function Weather() {
                 {weatherHourly && isHourly &&
                     < WeatherCardHourly
                         weather={weatherHourly}
-                        picture={cityPicture}
                         unit={unit} />}
 
                 {weatherDaily && isDaily &&
 
                     < WeatherCardDaily
                         weather={weatherDaily}
-                        picture={cityPicture}
                         unit={unit} />
                 }
             </ScrollAnimation>
